@@ -6,24 +6,35 @@ using System.Threading.Tasks;
 
 namespace bunnys_hill
 {
-    class Bunny
+    public class Bunny
     {
-        private enum Sex { male, female } //list of types of bunny's sex
-        private enum Color { white, black, brown, spotted }//list of types of a bunny's color
+        private Enums.Sex m_pSex = new Enums.Sex();
+        private Enums.Color m_pColor = new Enums.Color();
+        private int m_pAge; // 0 - 10
+        private string m_pName; //name of Bunny
 
-        private Sex m_pSex = new Sex();
-        private Color m_pColor = new Color();
-        private int m_pAge;
-        private string m_pName;
-
-        public Bunny(int m_pSex, int m_pColor, int m_pAge, string m_pName) //constructor of bunny's
+        public Bunny(int m_pSex, int m_pColor, int m_pAge) //constructor of bunny
         {
-            this.m_pSex = (Bunny.Sex)m_pSex;
-            this.m_pColor = (Bunny.Color)m_pColor;
+            this.m_pSex = (Enums.Sex)m_pSex;
+            this.m_pColor = (Enums.Color)m_pColor;
             this.m_pAge = m_pAge;
-            this.m_pName = m_pName;
 
             return;
+        }
+
+        public void setName(string m_pName)
+        {
+            this.m_pName = m_pName;
+        }
+
+        public string getValues()
+        {
+            Enums.Sex m_pSex = this.m_pSex;
+            Enums.Color m_pColor = this.m_pColor;
+            int m_pAge = this.m_pAge;
+            string m_pName = this.m_pName;
+
+            return "Bunny " + m_pName + " was burn. Features:\nGender: " + m_pSex + " Color: " + m_pColor + " Age: " + m_pAge; 
         }
     }
 }

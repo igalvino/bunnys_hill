@@ -9,39 +9,59 @@ namespace bunnys_hill
     class Program_1
     {
         private const int m_pBunnysQuan = 5; //how many bunnys we will create
-        private const int m_pBunnysChar = 3; //sex, color, age
 
-        private static int m_pSex;
-        private static int m_pColor;
-        private static int m_pAge;
-        private static string m_pName;
+        //auxiliary variables (original variables are in class @Bunny)
+        private static int m_pSex; //male and female
+        private static int m_pColor; //white, black, brown, spotted
+        private static int m_pAge; //0 - 10
+        private static string m_pName; //name of Bunny
 
-        public static void generateBunny()
+        static Bunny[] GenerateRandomBunnies(int m_pBunnysQuan)//giving random features for new bunnies
         {
+            Bunny [] bunny_arr = new Bunny[m_pBunnysQuan];
+
             Random random = new Random();
 
-            int m_pSexMax = 2; //male and female
-            int m_pColorMax = 4; //white, black, brown, spotted
-            int m_pAgeMax = 11; //0 - 10
-
-            m_pSex = random.Next(m_pSexMax);
-            m_pColor = random.Next(m_pColorMax);
-            m_pAge = random.Next(m_pAgeMax);
-        }
-
-
-        static void Main(string[] args)
-        {
-            Bunny[] bunny_arr = new Bunny[m_pBunnysQuan];
+            //variables of maximum values
+            const int m_pSexMax = 2; //male and female
+            const int m_pColorMax = 4; //white, black, brown, spotted
+            const int m_pAgeMax = 11; //0 - 10 (useless)
 
             for (int i = 0; i < m_pBunnysQuan; i++)
             {
-                Console.Write("Please, enter bunny's name: ");
+                m_pSex = random.Next(m_pSexMax);
+                m_pColor = random.Next(m_pColorMax);
+                m_pAge = 0;
+
+                Bunny bunny_ex = new Bunny(m_pSex, m_pColor, m_pAge);
+
+                Console.Write("Please, Enter Bunny's name: ");
                 m_pName = Console.ReadLine();
-                generateBunny();
-                
-                bunny_arr[i] = new Bunny(m_pSex, m_pColor, m_pAge, m_pName);
+                bunny_ex.setName(m_pName);
+
+                bunny_arr[i] = bunny_ex;
             }
+            Console.WriteLine();
+
+            return bunny_arr;
+        }
+
+        static void PrintBunnies(Bunny[] bunnies)
+        {
+            for (int i = 0; i < m_pBunnysQuan; i++)
+            {
+                Console.WriteLine(bunnies[i].getValues() + "\n");
+            }
+            
+        }
+
+        static void Main(string[] args)
+        {
+            Bunny[] bunnies;//creating bunnies
+
+            bunnies = GenerateRandomBunnies(m_pBunnysQuan);//giving random features (color and gender)for the bunnies
+
+            PrintBunnies(bunnies);//printing all info about bunny
 
             Console.ReadKey();
         }
