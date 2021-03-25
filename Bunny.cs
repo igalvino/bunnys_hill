@@ -8,7 +8,7 @@ namespace bunnys_hill
 {
     class Bunny
     {
-        private enum Sex { male, female }
+        private enum Sex { male, female } //list of types of bunny's sex
         private enum Color { white, black, brown, spotted }//list of types of a bunny's color
 
         private Sex m_pSex = new Sex();
@@ -16,8 +16,7 @@ namespace bunnys_hill
         private int m_pAge;
         private string m_pName;
 
-        public Bunny(int m_pSex, int m_pColor, int m_pAge, string m_pName) //overloaded constructor
-                                                           //if custom information is there
+        public Bunny(int m_pSex, int m_pColor, int m_pAge, string m_pName) //constructor of bunny's
         {
             this.m_pSex = (Bunny.Sex)m_pSex;
             this.m_pColor = (Bunny.Color)m_pColor;
